@@ -22,12 +22,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "SERVER_URL", '"http://192.168.0.0:8000"')
+            buildConfigField("String", "SERVER_URL", '"https://howtodoandroid.com/"')
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "SERVER_URL", '"http://192.168.0.0:8000"')
+            buildConfigField("String", "SERVER_URL", '"https://howtodoandroid.com/"')
         }
     }
     compileOptions {
@@ -56,11 +56,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // LiveData
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
 
-    implementation 'androidx.activity:activity-ktx:1.4.0'
-    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    implementation 'androidx.activity:activity-ktx:1.5.0'
+    implementation 'androidx.fragment:fragment-ktx:1.5.0'
 
     // DataBinding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
@@ -94,7 +94,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
     // GoogleMap
-    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:20.0.0'
 
     // Dexter
