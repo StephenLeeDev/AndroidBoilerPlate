@@ -23,7 +23,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object BoilerPlateModule {
+object OkHttpModule {
 
     @Provides
     @Singleton
@@ -46,12 +46,6 @@ object BoilerPlateModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(BoilerPlateServiceUtil::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideCheckCalendarRepository(boilerPlateServiceUtil: BoilerPlateServiceUtil) : BoilerPlateRepository {
-        return BoilerPlateRepositoryImpl(boilerPlateServiceUtil)
     }
 
 }
