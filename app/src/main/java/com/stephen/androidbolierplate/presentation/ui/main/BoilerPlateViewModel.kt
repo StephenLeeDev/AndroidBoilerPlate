@@ -20,16 +20,18 @@ class BoilerPlateViewModel @Inject constructor(
     private val getBoilerPlateUseCase: GetBoilerPlateUseCase
 ) : ViewModel() {
 
-    private val _getBoilerPlateResponse = MutableLiveData<List<BoilerPlateModel>>()
-    val getBoilerPlateResponse = _getBoilerPlateResponse as LiveData<List<BoilerPlateModel>>
+    private val _boilerPlateState = MutableLiveData<BoilerPlateState>(BoilerPlateState.Progress)
+    val boilerPlateState = _boilerPlateState as LiveData<BoilerPlateState>
 
-    // 금일 근무시간 정보
+    // GET 금일 근무시간 정보
     fun getBoilerPlate() {
         viewModelScope.launch {
             getBoilerPlateUseCase.execute()
-                .catch { }
+                .catch {
+                    _boilerPlateState.value = BoilerPlateState.Fail
+                }
                 .collect {
-                    _getBoilerPlateResponse.value = it
+                    _boilerPlateState.value = BoilerPlateState.Success(it)
                 }
         }
     }

@@ -16,6 +16,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        initObservers()
         boilerPlateViewModel.getBoilerPlate()
+    }
+
+    private fun initObservers() {
+        boilerPlateViewModel.boilerPlateState.observe(this@MainActivity) { state ->
+            when (state) {
+                is BoilerPlateState.Progress -> {
+                    // TODO : 통신 중
+                }
+                is BoilerPlateState.Success -> {
+                    // TODO : 통신 성공
+                }
+                is BoilerPlateState.Fail -> {
+                    // TODO : 통신 실패
+                }
+            }
+        }
     }
 }
