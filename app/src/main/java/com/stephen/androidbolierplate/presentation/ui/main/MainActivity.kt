@@ -11,13 +11,21 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val boilerPlateViewModel: BoilerPlateViewModel by viewModels()
+    private val adapter = BoilerPlateAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        initViews()
         initObservers()
         boilerPlateViewModel.getBoilerPlate()
+    }
+
+    private fun initViews() {
+        binding.apply {
+            recyclerView.adapter = adapter
+        }
     }
 
     private fun initObservers() {
@@ -27,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                     // TODO : 통신 중
                 }
                 is BoilerPlateState.Success -> {
-                    // TODO : 통신 성공
+                    adapter.submitList(state.list)
                 }
                 is BoilerPlateState.Fail -> {
                     // TODO : 통신 실패
