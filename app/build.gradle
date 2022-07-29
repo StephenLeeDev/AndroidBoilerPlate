@@ -100,4 +100,10 @@ dependencies {
     // Dexter
     implementation 'com.karumi:dexter:6.2.2'
 
+    // Paging3
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
+
+    // Joda Time
+    implementation 'joda-time:joda-time:2.10.9'
+
 }
