@@ -1,4 +1,4 @@
-package com.stephen.androidbolierplate.data.usecases
+package com.stephen.androidbolierplate.domain.usecases
 
 import com.stephen.androidbolierplate.data.model.BoilerPlateModel
 import com.stephen.androidbolierplate.data.repository.boilerplate.BoilerPlateRepository

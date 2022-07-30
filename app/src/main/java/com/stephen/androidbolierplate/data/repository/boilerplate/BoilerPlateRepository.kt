@@ -1,5 +1,6 @@
 package com.stephen.androidbolierplate.data.repository.boilerplate
 
+import androidx.paging.PagingData
 import com.stephen.androidbolierplate.data.model.BoilerPlateModel
 import kotlinx.coroutines.flow.Flow
 
@@ -9,4 +10,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface BoilerPlateRepository {
     suspend fun getMovies(): Flow<List<BoilerPlateModel>>
+    suspend fun getPagingMovies(): Flow<PagingData<BoilerPlateModel>>
 }

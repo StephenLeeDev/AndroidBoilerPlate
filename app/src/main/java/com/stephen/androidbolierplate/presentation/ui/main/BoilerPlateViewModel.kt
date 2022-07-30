@@ -4,26 +4,28 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.stephen.androidbolierplate.data.model.BoilerPlateModel
-import com.stephen.androidbolierplate.data.usecases.GetBoilerPlateUseCase
+import com.stephen.androidbolierplate.domain.usecases.GetBoilerPlateUseCase
+import com.stephen.androidbolierplate.domain.usecases.GetPagingUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 /**
  * Written by StephenLeeDev on 2022/07/25.
  */
 
 @HiltViewModel
 class BoilerPlateViewModel @Inject constructor(
-    private val getBoilerPlateUseCase: GetBoilerPlateUseCase
+    private val getBoilerPlateUseCase: GetBoilerPlateUseCase,
+//    private val getPagingUseCase: GetPagingUseCase
 ) : ViewModel() {
 
     private val _boilerPlateState = MutableLiveData<BoilerPlateState>(BoilerPlateState.Progress)
     val boilerPlateState = _boilerPlateState as LiveData<BoilerPlateState>
 
-    // GET 금일 근무시간 정보
     fun getBoilerPlate() {
         viewModelScope.launch {
             getBoilerPlateUseCase.execute()
@@ -36,4 +38,15 @@ class BoilerPlateViewModel @Inject constructor(
         }
     }
 
+//    fun getPagingBoilerPlate() {
+//        viewModelScope.launch {
+//            getPagingUseCase.execute().cachedIn(viewModelScope)
+//                .catch {  }
+//                .collectLatest {
+//
+//                }
+//        }
+//    }
+
 }
+

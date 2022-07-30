@@ -1,7 +1,7 @@
 package com.stephen.androidbolierplate.data.di.usecases
 
 import com.stephen.androidbolierplate.data.repository.boilerplate.BoilerPlateRepository
-import com.stephen.androidbolierplate.data.usecases.GetBoilerPlateUseCase
+import com.stephen.androidbolierplate.domain.usecases.GetBoilerPlateUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
