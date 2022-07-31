@@ -20,8 +20,9 @@ class PrefUtil(context : Context) {
         sharedPreferences.edit().putString("user_access_token", token).apply()
     }
 
-    fun getUserAccessToken(): String {
-        return sharedPreferences.getString("user_access_token", "") ?: ""
-    }
+    fun getUserAccessToken(): String =
+        sharedPreferences.getString("user_access_token", "") ?: ""
 
+    fun isHoldingToken(): Boolean =
+        getUserAccessToken().isNotEmpty()
 }
