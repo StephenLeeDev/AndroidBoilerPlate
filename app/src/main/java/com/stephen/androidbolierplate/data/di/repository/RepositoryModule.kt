@@ -1,8 +1,8 @@
 package com.stephen.androidbolierplate.data.di.repository
 
 import com.stephen.androidbolierplate.data.api.BoilerPlateServiceUtil
-import com.stephen.androidbolierplate.data.repository.boilerplate.BoilerPlateRepository
-import com.stephen.androidbolierplate.data.repository.boilerplate.BoilerPlateRepositoryImpl
+import com.stephen.androidbolierplate.domain.repository.boilerplate.BoilerPlateRepository
+import com.stephen.androidbolierplate.domain.repository.boilerplate.BoilerPlateRepositoryImpl
 import com.stephen.androidbolierplate.presentation.ui.list.BoilerPlatePagingSource
 import dagger.Module
 import dagger.Provides

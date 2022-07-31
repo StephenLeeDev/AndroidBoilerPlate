@@ -1,4 +1,4 @@
-package com.stephen.androidbolierplate.data.repository.boilerplate
+package com.stephen.androidbolierplate.domain.repository.boilerplate
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

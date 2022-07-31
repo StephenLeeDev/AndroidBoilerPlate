@@ -2,7 +2,7 @@ package com.stephen.androidbolierplate.domain.usecases
 
 import androidx.paging.PagingData
 import com.stephen.androidbolierplate.data.model.BoilerPlateModel
-import com.stephen.androidbolierplate.data.repository.boilerplate.BoilerPlateRepository
+import com.stephen.androidbolierplate.domain.repository.boilerplate.BoilerPlateRepository
 import kotlinx.coroutines.flow.Flow
 
 /**
