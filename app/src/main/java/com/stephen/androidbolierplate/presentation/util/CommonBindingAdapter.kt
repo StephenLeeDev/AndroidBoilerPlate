@@ -15,7 +15,9 @@ object CommonBindingAdapter {
     fun setImageUrl(view: AppCompatImageView, imageUrl: String) {
         Glide.with(view.context)
             .load(imageUrl)
+            .centerCrop()
             .into(view)
+
     }
 
 }

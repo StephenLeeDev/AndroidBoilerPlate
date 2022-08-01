@@ -16,6 +16,6 @@ class PeopleFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_people, container, false)
+        return binding.root
     }
 }
