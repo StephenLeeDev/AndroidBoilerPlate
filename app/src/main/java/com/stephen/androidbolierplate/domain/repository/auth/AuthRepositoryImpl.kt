@@ -1,6 +1,6 @@
 package com.stephen.androidbolierplate.domain.repository.auth
 
-import com.stephen.androidbolierplate.data.api.AuthServiceUtil
+import com.stephen.androidbolierplate.data.api.auth.AuthServiceUtil
 import com.stephen.androidbolierplate.data.model.auth.SignInRequestModel
 import com.stephen.androidbolierplate.data.model.auth.SignInResponseModel
 import com.stephen.androidbolierplate.data.util.PrefUtil
@@ -18,9 +18,8 @@ class AuthRepositoryImpl(
     private val prefUtil: PrefUtil
 ) : AuthRepository {
 
-    override suspend fun signIn(body: SignInRequestModel): Flow<SignInResponseModel> {
-        return flow { emit(authServiceUtil.postSignIn(body)) }.flowOn(Dispatchers.IO)
-    }
+    override suspend fun signIn(body: SignInRequestModel): Flow<SignInResponseModel> =
+        flow { emit(authServiceUtil.postSignIn(body)) }.flowOn(Dispatchers.IO)
 
     override suspend fun setUserAccessToken(userAccessToken: String) {
         prefUtil.setUserAccessToken(userAccessToken)
