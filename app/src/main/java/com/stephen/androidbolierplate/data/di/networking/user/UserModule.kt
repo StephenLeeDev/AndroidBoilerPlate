@@ -1,7 +1,7 @@
-package com.stephen.androidbolierplate.data.di.networking.auth
+package com.stephen.androidbolierplate.data.di.networking.user
 
 import com.stephen.androidbolierplate.BuildConfig
-import com.stephen.androidbolierplate.data.api.auth.AuthServiceUtil
+import com.stephen.androidbolierplate.data.api.user.UserServiceUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,22 +12,22 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 /**
- * Written by StephenLeeDev on 2022/07/31.
+ * Written by StephenLeeDev on 2022/08/01.
  */
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AuthModule {
+object UserModule {
 
     @Provides
     @Singleton
-    fun provideAuthServiceUtil(okHttpClient: OkHttpClient): AuthServiceUtil {
+    fun provideUserServiceUtil(okHttpClient: OkHttpClient): UserServiceUtil {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.SERVER_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(AuthServiceUtil::class.java)
+            .create(UserServiceUtil::class.java)
     }
 
 }

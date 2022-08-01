@@ -1,6 +1,6 @@
 package com.stephen.androidbolierplate.data.di.repository.auth
 
-import com.stephen.androidbolierplate.data.api.AuthServiceUtil
+import com.stephen.androidbolierplate.data.api.auth.AuthServiceUtil
 import com.stephen.androidbolierplate.data.util.PrefUtil
 import com.stephen.androidbolierplate.domain.repository.auth.AuthRepository
 import com.stephen.androidbolierplate.domain.repository.auth.AuthRepositoryImpl
@@ -16,7 +16,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AuthRepositoryModule {
+object AuthRepositoryModule {
 
     @Provides
     @Singleton
