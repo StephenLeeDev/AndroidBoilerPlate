@@ -2,22 +2,27 @@ package com.stephen.androidbolierplate.presentation.ui.main.chat
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.stephen.androidbolierplate.data.model.chat.ChatRoomModel
 import com.stephen.androidbolierplate.databinding.ItemChatroomBinding
+import com.stephen.androidbolierplate.interfaces.ClickListener
 
 /**
  * Written by StephenLeeDev on 2022/08/01.
  */
 
-class ChatRoomAdapter: ListAdapter<ChatRoomModel, ChatRoomAdapter.ChatRoomViewHolder>(diffUtil) {
+class ChatRoomAdapter(private val listener: ClickListener<ChatRoomModel>): PagingDataAdapter<ChatRoomModel, ChatRoomAdapter.ChatRoomViewHolder>(diffUtil) {
 
     inner class ChatRoomViewHolder(private val binding: ItemChatroomBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: ChatRoomModel) {
-            binding.model = model
+            binding.apply {
+                this.model = model
+                root.setOnClickListener {
+                    listener.onClick(model) }
+            }
         }
     }
 
@@ -26,7 +31,7 @@ class ChatRoomAdapter: ListAdapter<ChatRoomModel, ChatRoomAdapter.ChatRoomViewHo
     }
 
     override fun onBindViewHolder(holder: ChatRoomViewHolder, position: Int) {
-        holder.bind(currentList[position] ?: return)
+        holder.bind(getItem(position) ?: return)
     }
 
     companion object {

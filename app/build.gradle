@@ -23,11 +23,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "SERVER_URL", '"https://run.mocky.io/"')
+            buildConfigField("String", "WS_URL", '"ws://192.168.50.174:8080/ws/chat/websocket"')
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "SERVER_URL", '"https://run.mocky.io/"')
+            buildConfigField("String", "WS_URL", '"ws://192.168.50.174:8080/ws/chat/websocket"')
         }
     }
     compileOptions {
@@ -109,5 +111,12 @@ dependencies {
 
     // Joda Time
     implementation 'joda-time:joda-time:2.10.9'
+
+    // Stomp
+    implementation 'com.github.NaikSoftware:StompProtocolAndroid:1.6.6'
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
 }

@@ -32,4 +32,6 @@ data class ChatRoomModel(
     // 마지막 메시지의 생성일을 기준으로한 날짜
     fun messageDateByString(): String = TimeUtil.getIntervalByString(createdDate)
 
+    fun getNameWithCompany(): String = "$position @${company}"
+
 }
