@@ -8,6 +8,11 @@
         <variable
             name="model"
             type="com.stephen.androidbolierplate.data.model.chat.ChatRoomModel" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +50,7 @@
                 android:gravity="center_vertical"
                 android:text="@{model.senderName}"
                 android:textColor="@color/text_black"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 tools:text="성하연" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -57,7 +62,7 @@
                 android:gravity="center_vertical"
                 android:text="@{model.position}"
                 android:textColor="@color/dark_gray"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 tools:text="UI/UX Designer" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -71,7 +76,7 @@
                 android:maxLines="1"
                 android:text="@{model.message}"
                 android:textColor="@color/dark_gray"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 tools:text="안녕하세요. 홍로켓님 잘지내셨나요? 일전에 UX세미나에서 반가웠습니다. 다름이 아니라 부탁드릴 것이 있어서 이렇게 연락드립니다." />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -80,7 +85,7 @@
             android:id="@+id/layout_date"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:gravity="center_horizontal"
+            android:gravity="end"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +96,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqahansans_regular"
                 android:textColor="@color/gray"
-                android:textSize="16sp"
+                android:textSize="12sp"
+                android:text="@{model.messageDateByString}"
                 tools:text="어제" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -104,7 +110,9 @@
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="12sp"
+                android:text="@{model.unreadMessageCountToString}"
+                android:visibility="@{model.hasUnreadMessage() ? View.VISIBLE : View.GONE}"
                 tools:text="84" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

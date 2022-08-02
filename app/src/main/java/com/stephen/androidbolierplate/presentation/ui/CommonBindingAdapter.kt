@@ -1,4 +1,4 @@
-package com.stephen.androidbolierplate.presentation.util
+package com.stephen.androidbolierplate.presentation.ui
 
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
