@@ -58,12 +58,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/spoqahansans_medium"
                 android:gravity="center_vertical"
-                android:text="@{model.position}"
+                android:maxLines="1"
+                android:text="@{model.getNameWithCompany}"
                 android:textColor="@color/dark_gray"
                 android:textSize="14sp"
-                tools:text="UI/UX Designer" />
+                tools:text="UI/UX Designer @레진엔터테인먼트" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_message"
@@ -95,9 +97,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqahansans_regular"
+                android:text="@{model.messageDateByString}"
                 android:textColor="@color/gray"
                 android:textSize="12sp"
-                android:text="@{model.messageDateByString}"
                 tools:text="어제" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -109,9 +111,9 @@
                 android:fontFamily="@font/spoqahansans_regular"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
+                android:text="@{model.unreadMessageCountToString}"
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                android:text="@{model.unreadMessageCountToString}"
                 android:visibility="@{model.hasUnreadMessage() ? View.VISIBLE : View.GONE}"
                 tools:text="84" />
 
