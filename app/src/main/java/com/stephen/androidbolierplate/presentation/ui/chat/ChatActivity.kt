@@ -9,6 +9,7 @@ import com.stephen.androidbolierplate.data.model.chat.ChatRoomModel
 import com.stephen.androidbolierplate.databinding.ActivityChatBinding
 import com.stephen.androidbolierplate.presentation.ui.base.BaseActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.dto.LifecycleEvent
@@ -25,6 +26,8 @@ class ChatActivity : BaseActivity() {
     private val userId by lazy {
         intent.getStringExtra("userId")
     }
+
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,19 +81,26 @@ class ChatActivity : BaseActivity() {
             }
         }
 
-        stompClient.topic("/sub/chat/room/${chatRoomModel.roomId}")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
-            { message ->
-                val message = Gson().fromJson(message.payload, ChatMessageModel::class.java)
-                message.setViewType(userId = userId ?: return@subscribe)
-                var messages: List<ChatMessageModel> = adapter.currentList
-                messages = messages + message
-                adapter.submitList(messages)
+        compositeDisposable.add(
+            stompClient.topic("/sub/chat/room/${chatRoomModel.roomId}")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ message ->
+                    val message = Gson().fromJson(message.payload, ChatMessageModel::class.java)
+                    message.setViewType(userId = userId ?: return@subscribe)
+                    var messages: List<ChatMessageModel> = adapter.currentList
+                    messages = messages + message
+                    adapter.submitList(messages)
 
-                if (BuildConfig.DEBUG) Log.d("chatRooms", message.toString())
-            }
+                    if (BuildConfig.DEBUG) Log.d("chatRooms", message.toString())
+                }, {})
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (stompClient.isConnected) stompClient.disconnect()
+        compositeDisposable.dispose()
     }
 
 }
