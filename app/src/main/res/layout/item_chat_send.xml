@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.stephen.androidbolierplate.data.model.chat.ChatMessageModel" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:weightSum="3"
+        android:layout_margin="8dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_time"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqahansans_medium"
+            android:gravity="end"
+            android:text="@{model.getTime}"
+            android:textColor="@color/dark_gray"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:layout_gravity="bottom"
+            tools:text="오전 10:23" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_message"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqahansans_medium"
+            android:gravity="center_vertical"
+            android:text="@{model.message}"
+            android:textColor="@color/white"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:background="@drawable/base_background_radius_16"
+            android:backgroundTint="@color/selected"
+            tools:text="안녕하세요. 홍로켓님 잘지내셨나요? 일전에 UX세미나에서 반가웠습니다. 다름이 아니라 부탁드릴 것이 있어서 이렇게 연락드립니다." />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>
