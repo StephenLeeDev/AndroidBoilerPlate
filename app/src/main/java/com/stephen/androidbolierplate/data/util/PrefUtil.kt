@@ -25,4 +25,9 @@ class PrefUtil(context : Context) {
 
     fun isHoldingToken(): Boolean =
         getUserAccessToken().isNotEmpty()
+
+    fun logout() {
+        setUserAccessToken("")
+    }
+
 }

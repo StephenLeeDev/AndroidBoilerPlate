@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stephen.androidbolierplate.data.model.user.UserModel
 import com.stephen.androidbolierplate.domain.usecases.user.GetUserInfoUseCase
+import com.stephen.androidbolierplate.domain.usecases.user.SignOutUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -19,7 +20,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
-    private val getUserInfoUseCase: GetUserInfoUseCase
+    private val getUserInfoUseCase: GetUserInfoUseCase,
+    private val signOutUseCase: SignOutUseCase
 ) : ViewModel() {
 
     private val _userInfo = MutableLiveData<UserModel>()
@@ -34,6 +36,12 @@ class UserViewModel @Inject constructor(
                         _userInfo.value = user
                     }
                 }
+        }
+    }
+
+    fun signOut() {
+        viewModelScope.launch(Dispatchers.IO) {
+            signOutUseCase.execute()
         }
     }
 
