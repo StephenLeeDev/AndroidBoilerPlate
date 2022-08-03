@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.stephen.androidbolierplate.data.model.chat.ChatRoomModel" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setImageUrl="@{model.profileUrl}"
+            tools:src="@drawable/rocketpunch" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/layout_date"
+            app:layout_constraintStart_toEndOf="@id/image_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/spoqahansans_bold"
+                android:gravity="center_vertical"
+                android:text="@{model.senderName}"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                tools:text="성하연" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_position"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/spoqahansans_medium"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@{model.getNameWithCompany}"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"
+                tools:text="UI/UX Designer @레진엔터테인먼트" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/spoqahansans_medium"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@{model.message}"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"
+                tools:text="안녕하세요. 홍로켓님 잘지내셨나요? 일전에 UX세미나에서 반가웠습니다. 다름이 아니라 부탁드릴 것이 있어서 이렇게 연락드립니다." />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_date"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="end"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/spoqahansans_regular"
+                android:text="@{model.messageDateByString}"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                tools:text="어제" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/base_background_radius_16"
+                android:backgroundTint="@color/pink"
+                android:fontFamily="@font/spoqahansans_regular"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="@{model.unreadMessageCountToString}"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="@{model.hasUnreadMessage() ? View.VISIBLE : View.GONE}"
+                tools:text="84" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

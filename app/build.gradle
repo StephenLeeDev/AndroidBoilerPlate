@@ -22,12 +22,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "SERVER_URL", '"https://howtodoandroid.com/"')
+            buildConfigField("String", "SERVER_URL", '"https://run.mocky.io/"')
+            buildConfigField("String", "WS_URL", '"ws://192.168.50.174:8080/ws/chat/websocket"')
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "SERVER_URL", '"https://howtodoandroid.com/"')
+            buildConfigField("String", "SERVER_URL", '"https://run.mocky.io/"')
+            buildConfigField("String", "WS_URL", '"ws://192.168.50.174:8080/ws/chat/websocket"')
         }
     }
     compileOptions {
@@ -56,19 +58,19 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // LiveData
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
-    implementation 'androidx.activity:activity-ktx:1.5.0'
-    implementation 'androidx.fragment:fragment-ktx:1.5.0'
+    implementation 'androidx.activity:activity-ktx:1.5.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.1'
 
     // DataBinding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
     kapt "androidx.databinding:databinding-common:7.2.1"
 
     // Room
-    implementation "androidx.room:room-runtime:2.4.2"
-    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-runtime:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
     implementation "android.arch.persistence.room:runtime:1.1.1"
     kapt "android.arch.persistence.room:compiler:1.1.1"
 
@@ -84,6 +86,10 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
+
+    // Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
 
     // Google Social Auth
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
@@ -105,5 +111,13 @@ dependencies {
 
     // Joda Time
     implementation 'joda-time:joda-time:2.10.9'
+
+    // Stomp
+    implementation 'com.github.NaikSoftware:StompProtocolAndroid:1.6.6'
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava3:rxkotlin:3.0.0'
 
 }
