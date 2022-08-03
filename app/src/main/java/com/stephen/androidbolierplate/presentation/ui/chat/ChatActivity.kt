@@ -41,6 +41,9 @@ class ChatActivity : BaseActivity() {
     private fun initViews() {
         binding.apply {
             buttonClose.setOnClickListener { finish() }
+
+            recyclerView.adapter = adapter
+
             buttonSend.setOnClickListener {
                 val message = editMessage.text.toString()
                 if (message.isEmpty()) return@setOnClickListener
@@ -95,12 +98,44 @@ class ChatActivity : BaseActivity() {
                     if (BuildConfig.DEBUG) Log.d("chatRooms", message.toString())
                 }, {})
         )
+
+        setDummyMessages()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         if (stompClient.isConnected) stompClient.disconnect()
         compositeDisposable.dispose()
+    }
+
+    /**
+     * 채팅을 주고받는 UI를 확인할 목적으로 추가한 더미 데이터 입니다
+     */
+    private fun setDummyMessages() {
+        val messages = listOf(
+            ChatMessageModel(
+                messageId = "1",
+                createdDate = "2022-08-03T17:58:18.073",
+                message = "안녕하세요. 홍로켓님 잘지내셨나요? 일전에 UX세미나에서 반가웠습니다. 다름이 아니라 부탁드릴 것이 있어서 이렇게 연락드립니다.",
+                senderId = "79",
+                unreadCount = 0
+            ).apply { setViewType("2357") },
+            ChatMessageModel(
+                messageId = "2",
+                createdDate = "2022-08-03T17:58:18.073",
+                message = "아 죄송해요. 이제야 메세지를 봤습니다. 저도 반가웠습니다!어떤 부탁인가요?",
+                senderId = "2357",
+                unreadCount = 0
+            ).apply { setViewType("2357") },
+            ChatMessageModel(
+                messageId = "3",
+                createdDate = "2022-08-03T17:58:18.073",
+                message = "안녕하세요.",
+                senderId = "79",
+                unreadCount = 0
+            ).apply { setViewType("2357") }
+        )
+        adapter.submitList(messages)
     }
 
 }
