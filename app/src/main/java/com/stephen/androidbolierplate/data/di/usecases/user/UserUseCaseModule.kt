@@ -1,6 +1,8 @@
 package com.stephen.androidbolierplate.data.di.usecases.user
 
 import com.stephen.androidbolierplate.domain.repository.user.UserRepository
+import com.stephen.androidbolierplate.domain.usecases.user.GetFriendsUseCase
+import com.stephen.androidbolierplate.domain.usecases.user.GetPeopleUseCase
 import com.stephen.androidbolierplate.domain.usecases.user.GetUserInfoUseCase
 import dagger.Module
 import dagger.Provides
@@ -20,6 +22,18 @@ object UserUseCaseModule {
     @Singleton
     fun provideGetUserInfoUseCase(userRepository: UserRepository): GetUserInfoUseCase {
         return GetUserInfoUseCase(userRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetPeopleUseCase(userRepository: UserRepository): GetPeopleUseCase {
+        return GetPeopleUseCase(userRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetFriendsUseCase(userRepository: UserRepository): GetFriendsUseCase {
+        return GetFriendsUseCase(userRepository)
     }
 
 }

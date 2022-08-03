@@ -15,6 +15,7 @@ import com.stephen.androidbolierplate.interfaces.ClickListener
 import com.stephen.androidbolierplate.presentation.ui.base.BaseFragment
 import com.stephen.androidbolierplate.presentation.ui.chat.ChatActivity
 import com.stephen.androidbolierplate.presentation.ui.main.UserViewModel
+import com.stephen.androidbolierplate.presentation.ui.people.PeopleActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
@@ -50,6 +51,12 @@ class ChatFragment : BaseFragment() {
     private fun initViews() {
         binding.apply {
             recyclerView.adapter = adapter
+
+            buttonNewMessage.setOnClickListener {
+                startActivity(Intent(requireActivity(), PeopleActivity::class.java).apply {
+                    putExtra("userId", userViewModel.userInfo.value?.userId ?: "")
+                })
+            }
         }
     }
 

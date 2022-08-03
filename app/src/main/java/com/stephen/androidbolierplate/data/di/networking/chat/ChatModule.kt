@@ -2,7 +2,6 @@ package com.stephen.androidbolierplate.data.di.networking.chat
 
 import com.stephen.androidbolierplate.BuildConfig
 import com.stephen.androidbolierplate.data.api.chat.ChatServiceUtil
-import com.stephen.androidbolierplate.presentation.ui.main.chat.ChatRoomPagingSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,12 +28,6 @@ object ChatModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ChatServiceUtil::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideChatRoomPagingSource(chatServiceUtil: ChatServiceUtil): ChatRoomPagingSource {
-        return ChatRoomPagingSource(chatServiceUtil)
     }
 
 }

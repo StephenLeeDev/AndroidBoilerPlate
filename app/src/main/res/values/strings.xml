@@ -8,4 +8,6 @@
 
     <string name="new_message">새 메시지</string>
     <string name="enter_message">메시지 입력</string>
+    <string name="receiver">받는 사람</string>
+    <string name="connected_person">연결된 사람</string>
 </resources>

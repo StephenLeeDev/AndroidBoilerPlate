@@ -27,4 +27,10 @@ object ChatRepositoryModule {
         return ChatRepositoryImpl(chatServiceUtil, chatRoomPagingSource)
     }
 
+    @Provides
+    @Singleton
+    fun provideChatRoomPagingSource(chatServiceUtil: ChatServiceUtil): ChatRoomPagingSource {
+        return ChatRoomPagingSource(chatServiceUtil)
+    }
+
 }

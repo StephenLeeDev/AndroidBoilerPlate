@@ -14,4 +14,8 @@ data class UserModel(
     val userId: String,
     @SerializedName("user_name")
     val userName: String
-)
+) {
+
+    fun getNameWithCompany(): String = "$position @${company}"
+
+}
